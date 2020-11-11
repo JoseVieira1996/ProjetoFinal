@@ -51,4 +51,6 @@ public class Empresas implements Serializable {
 		empresa = porId(empresa.getId());
 		manager.remove(empresa);
 	}
+	
+	
 }

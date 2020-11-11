@@ -56,7 +56,7 @@
 	            	update="messages empresasDataTable toolbar"
 	            	process="@this">
 	            	<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão" 
-	            		message="Posso excluir a empresa?" />	
+	            		message="Tem certeza que deseja excluir?" />	
             	</p:commandButton>
 	            
 				<span class="ui-separator">
@@ -81,16 +81,26 @@
 			
 			<p:ajax event="rowUnselect" update="frm:toolbar" />
 			
+			<p:column headerText="Nome fantasia" sortBy="#{empresa.nomeFantasia}">
+				<h:outputText value="#{empresa.nomeFantasia}" />
+			</p:column>
+			
 			<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 				<h:outputText value="#{empresa.razaoSocial}" />
 			</p:column>
 			
-			<p:column headerText="Nome fantasia">
-				<h:outputText value="#{empresa.nomeFantasia}" />
-			</p:column>
+		
 			
 			<p:column headerText="Tipo empresa">
 				<h:outputText value="#{empresa.tipo}" />
+			</p:column>
+			
+			<p:column headerText="Numero de Funcionários" sortBy="#{empresa.numFuncionarios}">
+				<h:outputText value="#{empresa.numFuncionarios}" />
+			</p:column>
+			
+			<p:column headerText="CNPJ">
+				<h:outputText value="#{empresa.cnpj}" />
 			</p:column>
 			
 			<p:column headerText="Ramo atividade">
@@ -106,13 +116,16 @@
 			
 			<h:panelGrid id="empresaPanelGrid" columns="2"
 				rendered="#{gestaoEmpresasBean.empresa ne null}">
-				<p:outputLabel value="Razão social: " for="razaoSocial" />
-				<p:inputText id="razaoSocial" size="80" maxlength="120" 
-					value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
 				
 				<p:outputLabel value="Nome fantasia: " for="nomeFantasia" />
 				<p:inputText id="nomeFantasia" size="80" maxlength="80" 
 					value="#{gestaoEmpresasBean.empresa.nomeFantasia}"/>
+					
+				<p:outputLabel value="Razão social: " for="razaoSocial" />
+				<p:inputText id="razaoSocial" size="80" maxlength="120" 
+					value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
+				
+				
 				
 				<p:outputLabel value="Tipo empresa: " for="tipo" />
 				<p:selectOneMenu id="tipo" value="#{gestaoEmpresasBean.empresa.tipo}">
@@ -121,6 +134,12 @@
 						var="tipoEmpresa" itemLabel="#{tipoEmpresa.descricao}"
 						itemValue="#{tipoEmpresa}"/>
 				</p:selectOneMenu>
+				
+				<p:outputLabel value="Número de Funcionários: " for="numFuncionarios" />
+				<p:inputNumber id="numFuncionarios" minValue="1" maxValue="50000" 
+							value="#{gestaoEmpresasBean.empresa.numFuncionarios}"/>
+						
+				
 				
 				<p:outputLabel value="CNPJ: " for="cnpj" />
 				<p:inputMask id="cnpj" mask="99.999.999/9999-99" size="18" maxlength="18"

@@ -64,6 +64,8 @@ public class GestaoEmpresasBean implements Serializable {
                 "frm:empresasDataTable", "frm:messages"));
     }
     
+    
+    
     public void excluir() {
         cadastroEmpresaService.excluir(empresa);
         
@@ -101,6 +103,8 @@ public class GestaoEmpresasBean implements Serializable {
             todasEmpresas();
         }
     }
+    
+    
     
     private boolean jaHouvePesquisa() {
         return termoPesquisa != null && !"".equals(termoPesquisa);

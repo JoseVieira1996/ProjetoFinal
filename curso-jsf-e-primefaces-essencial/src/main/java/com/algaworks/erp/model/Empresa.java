@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +21,9 @@ import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CNPJ;
+
+
+//Adicionando a interface serializable será possível transformar o objeto num formato que poderá ser salvo num arquivo
 
 @SuppressWarnings("deprecation")
 @Entity
@@ -40,10 +44,17 @@ public class Empresa implements Serializable {
 	@Column(name = "razao_social", nullable = false, length = 120)
 	private String razaoSocial;
 	
+	
 	@CNPJ
 	@NotNull
 	@Column(nullable = false, length = 18)
 	private String cnpj;
+		
+	
+	@NotNull
+	@Column(nullable = false, length = 18)
+	private int numFuncionarios;
+
 	
 	@NotNull
 	@Past
@@ -51,6 +62,8 @@ public class Empresa implements Serializable {
 	@Column(name = "data_fundacao")
 	private Date dataFundacao;
 	
+	
+	//Fazer a relaçao entre empresaXramoAtividade (Um ramo de atividade para varias empresas)
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "ramo_atividade_id", nullable = false)
@@ -86,12 +99,21 @@ public class Empresa implements Serializable {
 	}
 
 	public String getCnpj() {
-		return cnpj;
+		return cnpj;		  
 	}
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
+	public int getNumFuncionarios() {
+		return numFuncionarios;
+	}
+
+	public void setNumFuncionarios(int numFuncionarios) {
+		this.numFuncionarios = numFuncionarios;
+	}
+
 
 	public Date getDataFundacao() {
 		return dataFundacao;
@@ -117,6 +139,8 @@ public class Empresa implements Serializable {
 		this.tipo = tipo;
 	}
 
+	//O Override garante que você está sobrescrevendo um método e não criando um novo.
+	//https://www.guj.com.br/t/metodos-hashcode-e-equals/32199/5
 	@Override
 	public int hashCode() {
 		final int prime = 31;

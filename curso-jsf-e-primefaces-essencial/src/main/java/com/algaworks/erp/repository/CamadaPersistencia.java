@@ -1,3 +1,4 @@
+
 package com.algaworks.erp.repository;
 
 import java.util.Date;
@@ -48,6 +49,20 @@ public class CamadaPersistencia {
 		List<Empresa> listaDeEmpresas2 = empresas.pesquisar("");
 		System.out.println(listaDeEmpresas2);
 		
+		//Verificando se o CNPJ já existe
+		
+		/* String cnpjExiste = "123";
+		Query query = entityManager.createQuery("SELECT sa FROM Empresa AS sa WHERE sa.CNPJ =     ?1", Empresa.class);
+		query.setParameter(1,  cnpjExiste );
+		Empresa emp = (Empresa)query.getSingleResult();
+		if( emp == null ){
+		  // não existe
+		 }else{
+		   // existe
+		  }
+
+
+	*/
 		
 		em.close();
 		emf.close();

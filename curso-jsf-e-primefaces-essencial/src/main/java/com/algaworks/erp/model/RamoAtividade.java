@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 
 
-
+//Se só estiver o Entity, ele vai procurar uma tabela com o nome de RamoAtividade. Por isso é necessário informar o table
 @Entity
 @Table(name="ramo_atividade")
 public class RamoAtividade implements Serializable {
@@ -19,6 +19,9 @@ public class RamoAtividade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	
+	//O @id informa que é uma Primary Key
+	//O GeneratedValue gera um valor pro ID automaticamente.
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
